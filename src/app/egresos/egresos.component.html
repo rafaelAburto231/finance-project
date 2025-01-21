@@ -1,0 +1,82 @@
+<div class="p-6">
+    <h2 class="text-2xl font-bold mb-4">Egresos</h2>
+    
+    <!-- Expense Form -->
+    <form (ngSubmit)="agregarEgreso()" class="mb-6 bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="date">
+          Fecha
+        </label>
+        <input 
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
+          id="date" 
+          type="date" 
+          [(ngModel)]="nuevoEgreso.date" 
+          name="date" 
+          required
+        >
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="description">
+          Descripción
+        </label>
+        <input 
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
+          id="description" 
+          type="text" 
+          [(ngModel)]="nuevoEgreso.description" 
+          name="description" 
+          required
+        >
+      </div>
+      <div class="mb-6">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="amount">
+          Monto
+        </label>
+        <input 
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
+          id="amount" 
+          type="number" 
+          [(ngModel)]="nuevoEgreso.amount" 
+          name="amount" 
+          required
+        >
+      </div>
+      <div class="flex items-center justify-between">
+        <button 
+          class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" 
+          type="submit"
+        >
+          Agregar Egreso
+        </button>
+      </div>
+    </form>
+  
+    <!-- Expense Table -->
+    <div class="bg-white shadow-md rounded my-6">
+      <table class="min-w-full">
+        <thead>
+          <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
+            <th class="py-3 px-6 text-left">Fecha</th>
+            <th class="py-3 px-6 text-left">Descripción</th>
+            <th class="py-3 px-6 text-right">Monto</th>
+          </tr>
+        </thead>
+        <tbody class="text-gray-600 text-sm font-light">
+          @for (egreso of egresos; track egreso.id) {
+            <tr class="border-b border-gray-200 hover:bg-gray-100">
+              <td class="py-3 px-6 text-left whitespace-nowrap">
+                {{egreso.date.toDate() | date:'dd/MM/yyyy HH:mm'}}
+              </td>
+              <td class="py-3 px-6 text-left">
+                {{egreso.description}}
+              </td>
+              <td class="py-3 px-6 text-right">
+                {{egreso.amount | currency:'USD':'symbol':'1.2-2'}}
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>

@@ -1,0 +1,54 @@
+<div class="relative bg-gray-100 p-4 rounded-lg shadow mb-8">
+    <div class="flex justify-end gap-4">
+      <div>
+        <label for="anio" class="block text-sm font-medium text-gray-700">Año:</label>
+        <input
+          id="anio"
+          type="number"
+          [(ngModel)]="anioSeleccionado"
+          class="mt-1 block w-24 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+        />
+      </div>
+      <div>
+        <label for="mes" class="block text-sm font-medium text-gray-700">Mes:</label>
+        <select
+          id="mes"
+          [(ngModel)]="mesSeleccionado"
+          class="mt-1 block w-32 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+        >
+          <option *ngFor="let mes of meses; let i = index" [value]="i + 1">
+            {{ mes }}
+          </option>
+        </select>
+      </div>
+      <button
+        (click)="calcularEstadisticas()"
+        class="self-end py-2 px-4 rounded-md text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+      >
+        Actualizar Estadísticas
+      </button>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+    <div class="bg-white p-4 rounded shadow">
+      <h2 class="text-lg font-semibold mb-2">Ingresos del mes</h2>
+      <p class="text-2xl font-bold text-green-600">{{ ingresos | currency:'USD' }}</p>
+    </div>
+    <div class="bg-white p-4 rounded shadow">
+      <h2 class="text-lg font-semibold mb-2">Egresos del mes</h2>
+      <p class="text-2xl font-bold text-red-600">{{ egresos | currency:'USD' }}</p>
+    </div>
+    <div class="bg-white p-4 rounded shadow">
+      <h2 class="text-lg font-semibold mb-2">Ahorro del mes</h2>
+      <p class="text-2xl font-bold text-blue-600">{{ ahorroMes | currency:'USD' }}</p>
+    </div>
+    <div class="bg-white p-4 rounded shadow">
+      <h2 class="text-lg font-semibold mb-2">Balance total</h2>
+      <p class="text-2xl font-bold text-purple-600">{{ balanceTotal | currency:'USD' }}</p>
+    </div>
+  </div>
+
+  <div class="chart-wrapper">
+    <canvas #chartCanvas></canvas>
+  </div>

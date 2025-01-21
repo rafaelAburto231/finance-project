@@ -1,0 +1,12 @@
+.chart-wrapper {
+    width: 800px; /* Tamaño fijo para mantenerlo estático */
+    height: 400px; /* Altura fija */
+    margin: 0 auto; /* Centrar el canvas */
+  }
+  
+  canvas {
+    display: block;
+    width: 100% !important; /* Para asegurarse de que ocupa el ancho del wrapper */
+    height: 100% !important; /* Para asegurarse de que ocupa la altura del wrapper */
+  }
+  
